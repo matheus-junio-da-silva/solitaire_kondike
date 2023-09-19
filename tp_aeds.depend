@@ -24,11 +24,12 @@
 
 1695136130 source:c:\users\mathe\onedrive\workspace\tp_aeds\tad_mesa.c
 
-1695147522 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\main.c
+1695160386 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
 	"tad_cartas.h"
+	"tad_lista_cartas.h"
 
 1695147522 c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_cartas.h
 	<stdio.h>
@@ -41,5 +42,28 @@
 	<time.h>
 	"tad_cartas.h"
 
-1695147522 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.c
+1695160291 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.c
+	"tad_mesa.h"
+
+1695148971 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\ler_arquivo.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1695148005 c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1695160261 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_lista_cartas.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<stdbool.h>
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+
+1695160238 c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_lista_cartas.h
+	"tad_cartas.h"
+	<stdbool.h>
 

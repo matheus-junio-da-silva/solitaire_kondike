@@ -1,4 +1,4 @@
-#include "Tad_Mesa_de_Cartas.h"
+#include "tad_mesa.h"
 
 
 void inicializar(Mesa *mesa) {
@@ -44,7 +44,7 @@ void carregarBaralho(Mesa *mesa, Carta cartas[], int numCartas) {
 }
 
 
-
+/*
 int main() {
     // Testando o TAD Mesa
     Mesa mesa;
@@ -52,3 +52,4 @@ int main() {
     // ...
     return 0;
 }
+*/

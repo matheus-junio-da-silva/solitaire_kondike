@@ -3,25 +3,41 @@
 #include <time.h>
 
 #include "tad_cartas.h"
+#include "tad_lista_cartas.h"
 
 int main() {
-    Carta minhaCarta = criarCarta(2, 2, 0); // verso = 1 é virado para cima
-    Carta minhaCarta2 = criarCarta(2, 1, 1); // verso = 1 é virado para cima
+    // Inicialize a lista de cartas
+    ListaDeCartas lista;
+    Inicializar(&lista);
 
-    printf("Naipe: %d\n", retornarNaipe(minhaCarta));
-    printf("Valor: %d\n", retornarValor(minhaCarta));
-    printf("Posicao: %d\n", retornarPosicao(minhaCarta));
+    // Crie algumas cartas
+    Carta carta1 = criarCarta(1, 0, 1); // AS de Copas
+    Carta carta2 = criarCarta(2, 0, 1); // 2 de Copas
+    Carta carta3 = criarCarta(3, 0, 1); // 3 de Copas
 
-    alterarPosicao(&minhaCarta, 0);
-    printf("Nova Posicao: %d\n", retornarPosicao(minhaCarta)); // Deve imprimir 0 (virada para baixo)
+    // Adicione as cartas à lista
+    AdicionarNoTopo(&lista, carta1);
+    AdicionarNoTopo(&lista, carta2);
+    AdicionarNoTopo(&lista, carta3);
 
-    printf("se retorno = 1, entao sequencia de naipe é igual. -> %d\n", verificarSequenciaMesmoNaipe(minhaCarta, minhaCarta2));
+    // Exiba a lista de cartas
+    Exibir(&lista, true);
 
-    printf("se retorno = 1, entao sequencia é alternada. -> %d\n", verificarSequenciaAlternada(minhaCarta, minhaCarta2));
+    // Embaralhe as cartas
+    Embaralhar(&lista);
 
-    alterarPosicao(&minhaCarta, 1);
+    // Exiba a lista de cartas embaralhada
+    Exibir(&lista, true);
 
-    exibir_carta(minhaCarta);
+    // Retire uma carta do topo
+    Carta cartaRetirada;
+    RetirarDoTopo(&lista, &cartaRetirada);
+    printf("Carta retirada: ");
+    exibir_carta(cartaRetirada);
+
+    // Exiba a lista de cartas após a retirada
+    Exibir(&lista, true);
+
     return 0;
 }
 

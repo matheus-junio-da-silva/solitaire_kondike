@@ -1,25 +1,28 @@
-#ifndef TAD_LISTA_DE_CARTAS_H
-#define TAD_LISTA_DE_CARTAS_H
+#ifndef TAD_LISTA_DE_CARTAS_H_INCLUDED
+#define TAD_LISTA_DE_CARTAS_H_INCLUDED
 
 #include "tad_cartas.h"
+#include <stdbool.h>
 
-
-typedef struct{
+typedef struct No {
     Carta carta;
-    struct NoCarta *prox;
-}NoCarta;
+    struct No* proximo;
+} No;
 
-typedef struct{
-    NoCarta *topo;
-}ListaDeCartas;
+typedef struct {
+    No* topo;
+    int tamanho;
+} ListaDeCartas;
 
-ListaDeCartas criarListaDeCartas();
-int vazia(ListaDeCartas lista);
-int tamanho(ListaDeCartas lista);
-void adicionarCartaAoTopo(ListaDeCartas *lista, Carta carta);
-void retirarCartaDoTopo(ListaDeCartas *lista);
-void embaralhar(ListaDeCartas *lista);
-void exibir(ListaDeCartas lista);
+void Inicializar(ListaDeCartas* lista);
+int Tamanho(ListaDeCartas* lista);
+bool EstaVazia(ListaDeCartas* lista);
+void CartaNoTopo(ListaDeCartas* lista, Carta* carta);
+void CartaNaPosicao(ListaDeCartas* lista, int posicao, Carta* carta);
+void AdicionarNoTopo(ListaDeCartas* lista, Carta carta);
+void RetirarDoTopo(ListaDeCartas* lista, Carta* carta);
+void TransferirCartas(ListaDeCartas* listaOrigem, ListaDeCartas* listaDestino, int quantidade);
+void Embaralhar(ListaDeCartas* lista);
+void Exibir(ListaDeCartas* lista, bool todasAsCartas);
 
-
-#endif // TAD_LISTA_DE_CARTAS_H
+#endif // TAD_LISTA_DE_CARTAS_H_INCLUDED
