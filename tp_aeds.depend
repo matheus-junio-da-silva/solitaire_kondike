@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1694827035 source:c:\users\mathe\onedrive\workspace\tp_aeds\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tad_cartas.h"
+
+1694825973 c:\users\mathe\onedrive\workspace\tp_aeds\tad_cartas.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1694816039 c:\users\mathe\onedrive\workspace\tp_aeds\tad_cartas.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tad_cartas.h"
+
+1694826668 source:c:\users\mathe\onedrive\workspace\tp_aeds\tad_cartas.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tad_cartas.h"
+
+1695136130 source:c:\users\mathe\onedrive\workspace\tp_aeds\tad_mesa.c
+
