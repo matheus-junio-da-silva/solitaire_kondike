@@ -3,16 +3,7 @@
 #include <time.h>
 
 #include "tad_cartas.h"
-#include "tad_lista_cartas.h"
-
-typedef struct NoCarta {
-    Carta carta;
-    struct NoCarta *prox;
-} NoCarta;
-
-typedef struct {
-    NoCarta *topo;
-} ListaDeCartas;
+#include "Tad_Lista_de_Cartas.h"
 
 // Fun��o para criar uma lista de cartas vazia
 ListaDeCartas criarListaDeCartas() {
@@ -104,4 +95,3 @@ void exibir(ListaDeCartas lista) {
         atual = atual->prox;
     }
 }
-

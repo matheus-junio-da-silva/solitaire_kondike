@@ -4,17 +4,22 @@
 #include "tad_cartas.h"
 
 
-typedef struct NoCarta NoCarta;
-typedef struct ListaDeCartas ListaDeCartas;
+typedef struct{
+    Carta carta;
+    struct NoCarta *prox;
+}NoCarta;
+
+typedef struct{
+    NoCarta *topo;
+}ListaDeCartas;
 
 ListaDeCartas criarListaDeCartas();
 int vazia(ListaDeCartas lista);
 int tamanho(ListaDeCartas lista);
 void adicionarCartaAoTopo(ListaDeCartas *lista, Carta carta);
-Carta retirarCartaDoTopo(ListaDeCartas *lista);
+void retirarCartaDoTopo(ListaDeCartas *lista);
 void embaralhar(ListaDeCartas *lista);
 void exibir(ListaDeCartas lista);
 
 
 #endif // TAD_LISTA_DE_CARTAS_H
-
