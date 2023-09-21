@@ -129,6 +129,8 @@ void Embaralhar(ListaDeCartas* lista) {
 
         atual = atual->proximo;
     }
+    printf("embaralhado\n");
+
 }
 // Exibir
 void Exibir(ListaDeCartas* lista, bool todasAsCartas) { // o parametro lista é o topo da baralho

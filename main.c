@@ -53,6 +53,14 @@ int main() {
 
     VerificarVitoria(&mesa);
 
+    printf("--------------------------------:\n");
+    for (int i = 0; i < 25; i++) {
+        ComprarCarta(&mesa);
+    }
+    //ComprarCarta(&mesa);
+    //ExibirMesa(&mesa);
+
+
     return 0;
 }
 

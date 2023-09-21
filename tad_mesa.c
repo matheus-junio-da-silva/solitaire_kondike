@@ -128,6 +128,7 @@ void ExibirMesa(Mesa* mesa) {
         Exibir(&mesa->tableau[i], true);
     }
     // exibe o descarte
+    printf("descarte:\n");
     Exibir(&mesa->descarte, true);
 
     // Exibir a pontuação
@@ -135,27 +136,44 @@ void ExibirMesa(Mesa* mesa) {
 
 }
 
-/*
+
 void ComprarCarta(Mesa* mesa) {
     // Verificar se ainda há cartas no baralho
     if (EstaVazia(&(mesa->baralho))) {
         printf("Não há mais cartas no baralho para comprar.\n");
-        return;
+        // fazer um while para todas as cartas do descarte
+        while (mesa->descarte.tamanho > 0){
+            // fazer uma funcao que pega do descarte para o baralho e embaralha
+            // inicializa uma carta para receber do descarte
+            Carta cartaTopoDescarte;
+            //retira do topo descarte e coloca em cartaTopoDescarte
+            RetirarDoTopo(&(mesa->descarte), &cartaTopoDescarte);
+            // vira a carta para baixo
+            alterarPosicao(&cartaTopoDescarte, 0);
+            // Adicionar a carta ao baralho
+            AdicionarNoTopo(&(mesa->baralho), cartaTopoDescarte);
+        }
+        Embaralhar(&(mesa->baralho));
     }
 
-    // Retirar a carta do topo do baralho
+    // inicializa uma carta
     Carta cartaComprada;
+    //retira do topo e coloca em cartaComprada
+    // a funcao AdicionarNoTopo ja decrementa 1 no tamanho
     RetirarDoTopo(&(mesa->baralho), &cartaComprada);
-
+    // vira a carta para cima
+    alterarPosicao(&cartaComprada, 1);
     // Adicionar a carta ao descarte
+    // a funcao AdicionarNoTopo ja incrementa 1 no tamanho
     AdicionarNoTopo(&(mesa->descarte), cartaComprada);
-
     // Exibir a carta comprada
+    printf("O tamanho do descarte é: %d\n", mesa->descarte.tamanho);
     printf("Você comprou a seguinte carta:\n");
-    ExibirCarta(cartaComprada);
+
+    exibir_carta(cartaComprada);
 }
 
-
+/*
 void MoverDescarteParaBases(Mesa* mesa) {
     // Verifique se o descarte não está vazio
     if (!EstaVazia(&mesa->descarte)) {
