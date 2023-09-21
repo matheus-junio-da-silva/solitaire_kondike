@@ -71,9 +71,9 @@ void AdicionarNoTopo(ListaDeCartas* lista, Carta carta) {
 // Retirar carta do topo
 void RetirarDoTopo(ListaDeCartas* lista, Carta* carta) {
     if (!EstaVazia(lista)) {
-        No* noRemovido = lista->topo;
-        *carta = noRemovido->carta;
-        lista->topo = lista->topo->proximo;
+        No* noRemovido = lista->topo; // topo do baralho
+        *carta = noRemovido->carta; // atribuinda a carta do topo do baralho para *carta do parametro
+        lista->topo = lista->topo->proximo; // agora o topo do baralho é o penultimo topo
         free(noRemovido);
         lista->tamanho--;
     } else {
@@ -131,11 +131,11 @@ void Embaralhar(ListaDeCartas* lista) {
     }
 }
 // Exibir
-void Exibir(ListaDeCartas* lista, bool todasAsCartas) {
+void Exibir(ListaDeCartas* lista, bool todasAsCartas) { // o parametro lista é o topo da baralho
     if (EstaVazia(lista)) {
         printf("A lista de cartas está vazia.\n");
     } else {
-        No* atual = lista->topo;
+        No* atual = lista->topo; // topo do baralho
         printf("Lista de Cartas:\n");
         int i = 0;
         // vai ser null assim que chegar na ultima carta (a mais distante do topo)

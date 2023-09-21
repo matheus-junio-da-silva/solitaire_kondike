@@ -34,11 +34,15 @@ void CarregarBaralhoAleatorio(Mesa* mesa) {
             AdicionarNoTopo(&(mesa->baralho), novaCarta);
         }
     }
-    Exibir(&mesa->baralho, true);
+    for (int i = 0; i < 7; i++) {
+        Exibir(&mesa->tableau[i], true);
+    }
 
     Embaralhar(&(mesa->baralho));
 }
 /*
+Carregar baralho: insere cartas no baralho de acordo com as cartas passadas num
+parâmetro de entrada, preservando a ordem passada.
 
 void CarregarBaralho(Mesa* mesa, Carta* cartas, int numCartas) {
     // Certifique-se de que o número de cartas a serem carregadas seja válido
@@ -60,14 +64,29 @@ void CarregarBaralho(Mesa* mesa, Carta* cartas, int numCartas) {
         }
     }
 }
+*/
 
-
-void Preparar(Mesa* mesa) {
+void PrepararMesa(Mesa* mesa) {
     // Carrega o baralho aleatório
     CarregarBaralhoAleatorio(mesa);
 
+    for (int i = 0; i < 7; i++) {
+        for (int j = 0; j < i + 1; j++) {
+            Carta carta; // inicializa uma carta para rebeber uma carta que estava no topo
+            RetirarDoTopo(&(mesa->baralho), &carta);
+            if (j == i) {
+                // A última carta em cada coluna fica virada para cima, obs: ultimo de cada loop do j
+                alterarPosicao(&carta, 1);
+            }
+            AdicionarNoTopo(&(mesa->tableau[i]), carta);
+        }
+    }
+
+    Exibir(&mesa->baralho, true);
+
+    /*
     // Distribui as cartas do baralho para o tableau, como descrito na introdução
-    for (int coluna = 0; coluna < NUM_COLUNAS_TABLEAU; coluna++) {
+    for (int coluna = 0; coluna < 7; coluna++) {
         for (int carta = 0; carta <= coluna; carta++) {
             Carta cartaDistribuida;
             RetirarDoTopo(&(mesa->baralho), &cartaDistribuida);
@@ -82,9 +101,10 @@ void Preparar(Mesa* mesa) {
             alterarPosicao(&(ultimaCarta->carta), 1); // Virar para cima
         }
     }
+    */
 }
 
-
+/*
 int VerificarVitoria(Mesa* mesa) {
     // Verificar se todas as bases têm 13 cartas (uma de cada naipe)
     for (int naipe = 0; naipe < NUM_NAIPE; naipe++) {
