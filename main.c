@@ -43,11 +43,11 @@ int main() {
     InicializarMesa(&mesa);
 
     // carregou o baralho de 52 cartas mas com todas virada para baixo, sendo o topo
-    CarregarBaralhoAleatorio(&mesa);
+    //CarregarBaralhoAleatorio(&mesa);
 
 
 
-    //PrepararMesa(&mesa); // ja carrega o baralho aleatorio
+    PrepararMesa(&mesa); // ja carrega o baralho aleatorio
 
 
     return 0;

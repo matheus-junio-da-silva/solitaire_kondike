@@ -86,7 +86,9 @@ void PrepararMesa(Mesa* mesa) {
         }
     }
 
-    Exibir(&mesa->baralho, true);
+    for (int i = 0; i < 7; i++) {
+        Exibir(&mesa->tableau[i], true);
+    }
 
     /*
     // Distribui as cartas do baralho para o tableau, como descrito na introdução
