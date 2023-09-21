@@ -34,11 +34,15 @@ void CarregarBaralhoAleatorio(Mesa* mesa) {
             AdicionarNoTopo(&(mesa->baralho), novaCarta);
         }
     }
+
+    /*
     for (int i = 0; i < 7; i++) {
         Exibir(&mesa->tableau[i], true);
     }
+    */
 
     Embaralhar(&(mesa->baralho));
+    Exibir(&mesa->baralho, true);
 }
 /*
 Carregar baralho: insere cartas no baralho de acordo com as cartas passadas num
