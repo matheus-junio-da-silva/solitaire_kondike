@@ -90,37 +90,19 @@ void PrepararMesa(Mesa* mesa) {
         Exibir(&mesa->tableau[i], true);
     }
 
-    /*
-    // Distribui as cartas do baralho para o tableau, como descrito na introdução
-    for (int coluna = 0; coluna < 7; coluna++) {
-        for (int carta = 0; carta <= coluna; carta++) {
-            Carta cartaDistribuida;
-            RetirarDoTopo(&(mesa->baralho), &cartaDistribuida);
-            AdicionarNoTopo(&(mesa->tableau[coluna]), cartaDistribuida);
-        }
-        // Vira a última carta de cada coluna para cima
-        if (mesa->tableau[coluna].tamanho > 0) {
-            No* ultimaCarta = mesa->tableau[coluna].topo;
-            for (int i = 0; i < mesa->tableau[coluna].tamanho - 1; i++) {
-                ultimaCarta = ultimaCarta->proximo;
-            }
-            alterarPosicao(&(ultimaCarta->carta), 1); // Virar para cima
-        }
-    }
-    */
 }
 
 /*
 int VerificarVitoria(Mesa* mesa) {
     // Verificar se todas as bases têm 13 cartas (uma de cada naipe)
-    for (int naipe = 0; naipe < NUM_NAIPE; naipe++) {
-        if (mesa->bases.tamanho != NUM_CARTAS_POR_NAIPE) {
+    for (int naipe = 0; naipe < 4; naipe++) {
+        if (mesa->bases.tamanho != 13) {
             return 0; // Ainda não venceu
         }
     }
 
     // Verificar se todas as colunas do tableau estão vazias
-    for (int coluna = 0; coluna < NUM_COLUNAS_TABLEAU; coluna++) {
+    for (int coluna = 0; coluna < 7; coluna++) {
         if (!EstaVazia(&(mesa->tableau[coluna]))) {
             return 0; // Ainda não venceu
         }
@@ -129,9 +111,25 @@ int VerificarVitoria(Mesa* mesa) {
     // Se todas as bases têm 13 cartas e todas as colunas do tableau estão vazias, então venceu
     return 1;
 }
-
+*/
 
 void ExibirMesa(Mesa* mesa) {
+    // exibe a base
+    printf("base:\n");
+    for (int i = 0; i < 4; i++) {
+        Exibir(&mesa->bases[i], true);
+    }
+    // exibe o tableau
+    printf("Tableau:\n");
+    for (int i = 0; i < 7; i++) {
+        Exibir(&mesa->tableau[i], true);
+    }
+    // exibe o descarte
+    Exibir(&mesa->descarte, true);
+
+    // Exibir a pontuação
+    printf("Pontuacao: %d\n", mesa->pontuacao);
+    /*
     // Exibir as bases
     printf("Bases:\n");
     for (int naipe = 0; naipe < NUM_NAIPE; naipe++) {
@@ -155,9 +153,10 @@ void ExibirMesa(Mesa* mesa) {
 
     // Exibir a pontuação
     printf("Pontuação: %d\n", mesa->pontuacao);
+    */
 }
 
-
+/*
 void ComprarCarta(Mesa* mesa) {
     // Verificar se ainda há cartas no baralho
     if (EstaVazia(&(mesa->baralho))) {

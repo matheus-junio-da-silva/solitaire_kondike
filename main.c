@@ -49,6 +49,7 @@ int main() {
 
     PrepararMesa(&mesa); // ja carrega o baralho aleatorio
 
+    ExibirMesa(&mesa);
 
     return 0;
 }
