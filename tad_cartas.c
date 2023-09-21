@@ -83,6 +83,6 @@ void exibir_carta(Carta carta) {
     if (carta.virada_para_cima) {
         printf("[%d,%c]\n", ++valor_carta, naipes[carta.naipe]);
     } else {
-        printf("[]");
+        printf("[??]");
     }
 }

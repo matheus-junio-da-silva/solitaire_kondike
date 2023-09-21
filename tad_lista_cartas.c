@@ -50,14 +50,21 @@ void CartaNaPosicao(ListaDeCartas* lista, int posicao, Carta* carta) {
 
 // Adicionar carta ao topo
 void AdicionarNoTopo(ListaDeCartas* lista, Carta carta) {
-    No* novoNo = (No*)malloc(sizeof(No));
-    if (novoNo == NULL) {
+    No* novoTopo = (No*)malloc(sizeof(No));
+    if (novoTopo == NULL) {
         printf("Erro na alocação de memoria");
         exit(1);
     }
-    novoNo->carta = carta;
-    novoNo->proximo = lista->topo;
-    lista->topo = novoNo;
+
+    // o seguinte codigo é como se fosse uma escada
+    // assim que se cria um novo topo a carta que estava no ultimo degrau
+    // cai para o penultimo e o novo topo entra no lugar dela
+    // e esse novo topo mantem o endereço de memoria do penultimo topo no "proximo"
+    novoTopo->carta = carta;
+    // no caso proximo é o topo que esta abaixo do topo de cima
+    novoTopo->proximo = lista->topo;
+    // topo é um No, e No é uma lista encadeada que contem carta e proximo
+    lista->topo = novoTopo;
     lista->tamanho++;
 }
 
@@ -131,12 +138,18 @@ void Exibir(ListaDeCartas* lista, bool todasAsCartas) {
         No* atual = lista->topo;
         printf("Lista de Cartas:\n");
         int i = 0;
+        // vai ser null assim que chegar na ultima carta (a mais distante do topo)
         while (atual != NULL) {
             if (todasAsCartas || i == 0) {
-                printf("%d%c ", atual->carta.valor, atual->carta.naipe);
+                // deve utilizar a funcao que printa a carta do tad_cartas
+                exibir_carta(atual->carta);
             } else {
                 printf("?? "); // Para cartas não visíveis
             }
+            //topo 2
+            //  topo proximo(1)
+            //      topo proximo(0)
+            // no caso proximo é o topo que esta abaixo do topo de cima
             atual = atual->proximo;
             i++;
         }
