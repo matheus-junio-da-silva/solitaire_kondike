@@ -43,7 +43,7 @@
 	<time.h>
 	"tad_cartas.h"
 
-1695323968 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.c
+1695328043 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -60,7 +60,7 @@
 	"tad_cartas.h"
 	"tad_lista_cartas.h"
 
-1695315089 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_lista_cartas.c
+1695327765 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_lista_cartas.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -68,7 +68,7 @@
 	"tad_cartas.h"
 	"tad_lista_cartas.h"
 
-1695160238 c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_lista_cartas.h
+1695327766 c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_lista_cartas.h
 	"tad_cartas.h"
 	<stdbool.h>
 

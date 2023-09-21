@@ -33,6 +33,16 @@ void CartaNoTopo(ListaDeCartas* lista, Carta* carta) {
     }
 }
 
+int CartaNoTopoExtra(ListaDeCartas* lista, Carta* carta) {
+    if (!EstaVazia(lista)) {
+        *carta = lista->topo->carta;
+        return 1;
+    } else {
+       printf("Lista vazia");
+       return 0;
+    }
+}
+
 
 // Retornar a carta que está numa dada posição
 void CartaNaPosicao(ListaDeCartas* lista, int posicao, Carta* carta) {

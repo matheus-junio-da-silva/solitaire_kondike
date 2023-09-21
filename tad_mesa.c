@@ -256,6 +256,52 @@ void MoverDescarteParaTableau(Mesa* mesa, int indiceTableau) {
     }
 }
 
+void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
+    // Verificar se o índice do tableau é válido
+    if (indiceTableau < 0 || indiceTableau >= 7) {
+        printf("O índice do tableau é inválido.\n");
+        return;
+    }
+
+    // Verificar se o tableau está vazio
+    if (Tamanho(&(mesa->tableau[indiceTableau])) == 0) {
+        printf("O tableau %d está vazio. Não há cartas para mover para as bases.\n", indiceTableau + 1);
+        return;
+    }
+
+    // Obter a carta do topo do tableau
+    Carta cartaTableau;
+    RetirarDoTopo(&(mesa->tableau[indiceTableau]), &cartaTableau);
+
+    // Verificar se a carta pode ser movida para as bases do mesmo naipe
+    int naipeCarta = retornarNaipe(cartaTableau);
+
+    if (naipeCarta >= 0 && naipeCarta <= 3) {
+        if (Tamanho(&(mesa->tableau[indiceTableau])) == 0) {
+            if (retornarValor(cartaTableau) == 0) {
+                // A carta AS do naipe pode ser movida para a base
+                AdicionarNoTopo(&(mesa->bases[naipeCarta]), cartaTableau);
+                printf("A carta foi movida para a base %c.\n", naipeCarta == 0 ? 'C' : (naipeCarta == 1 ? 'E' : (naipeCarta == 2 ? 'O' : 'P')));
+                return;
+            }
+        } else {
+            Carta cartaBase;
+            if (CartaNoTopoExtra(&(mesa->bases[naipeCarta]), &cartaBase)) {
+                // Verificar se a carta do tableau pode ser adicionada ao topo das bases
+                if (retornarNaipe(cartaBase) == naipeCarta && retornarValor(cartaBase) == retornarValor(cartaTableau) - 1) {
+                    AdicionarNoTopo(&(mesa->bases[naipeCarta]), cartaTableau);
+                    printf("A carta foi movida para a base %c.\n", naipeCarta == 0 ? 'C' : (naipeCarta == 1 ? 'E' : (naipeCarta == 2 ? 'O' : 'P')));
+                    return;
+                } else {
+                    // A carta não pode ser adicionada às bases
+                    printf("A carta não pode ser movida para as bases.\n");
+                    // Devolver a carta para o tableau
+                    AdicionarNoTopo(&(mesa->tableau[indiceTableau]), cartaTableau);
+                }
+            }
+        }
+    }
+}
 
 /*
 void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {

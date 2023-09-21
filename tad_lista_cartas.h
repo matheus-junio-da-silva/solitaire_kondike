@@ -18,6 +18,7 @@ void Inicializar(ListaDeCartas* lista);
 int Tamanho(ListaDeCartas* lista);
 bool EstaVazia(ListaDeCartas* lista);
 void CartaNoTopo(ListaDeCartas* lista, Carta* carta);
+int CartaNoTopoExtra(ListaDeCartas* lista, Carta* carta);
 void CartaNaPosicao(ListaDeCartas* lista, int posicao, Carta* carta);
 void AdicionarNoTopo(ListaDeCartas* lista, Carta carta);
 void RetirarDoTopo(ListaDeCartas* lista, Carta* carta);
