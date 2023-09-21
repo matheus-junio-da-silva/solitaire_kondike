@@ -24,7 +24,7 @@
 
 1695136130 source:c:\users\mathe\onedrive\workspace\tp_aeds\tad_mesa.c
 
-1695314767 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\main.c
+1695324390 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -43,7 +43,7 @@
 	<time.h>
 	"tad_cartas.h"
 
-1695315290 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.c
+1695323968 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -56,7 +56,7 @@
 	<stdlib.h>
 	<string.h>
 
-1695255049 c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.h
+1695319681 c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.h
 	"tad_cartas.h"
 	"tad_lista_cartas.h"
 

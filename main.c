@@ -54,13 +54,23 @@ int main() {
     VerificarVitoria(&mesa);
 
     printf("--------------------------------:\n");
+    /*
     for (int i = 0; i < 25; i++) {
         ComprarCarta(&mesa);
     }
-    //ComprarCarta(&mesa);
+    */
+    ComprarCarta(&mesa);
     //ExibirMesa(&mesa);
 
+    //MoverDescarteParaBases(&mesa);
 
+    ExibirMesa(&mesa);
+
+    int indice;
+    printf("Digite o índice: ");
+    scanf("%d", &indice);
+
+    MoverDescarteParaTableau(&mesa, indice);
     return 0;
 }
 

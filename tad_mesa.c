@@ -173,7 +173,24 @@ void ComprarCarta(Mesa* mesa) {
     exibir_carta(cartaComprada);
 }
 
-/*
+int DeterminarBaseCorreta(Mesa* mesa, Carta carta) {
+    // Percorra todas as bases
+    for (int i = 0; i < 4; i++) {
+        // Se a base estiver vazia e a carta for um Ás, esta é a base correta
+        if (EstaVazia(&mesa->bases[i]) && carta.valor == 0) {
+            return i;
+        }
+
+        // Se a base não estiver vazia, verifique se o naipe é o mesmo e o valor é um maior
+        if (!EstaVazia(&mesa->bases[i]) && mesa->bases[i].topo->carta.naipe == carta.naipe && mesa->bases[i].topo->carta.valor == carta.valor - 1) {
+            return i;
+        }
+    }
+
+    // Se nenhuma base for adequada, retorne -1
+    return -1;
+}
+
 void MoverDescarteParaBases(Mesa* mesa) {
     // Verifique se o descarte não está vazio
     if (!EstaVazia(&mesa->descarte)) {
@@ -183,47 +200,64 @@ void MoverDescarteParaBases(Mesa* mesa) {
         // Retire a carta do topo do descarte
         RetirarDoTopo(&mesa->descarte, &carta);
 
-        // Adicione a carta às bases
-        AdicionarNoTopo(&mesa->bases, carta);
+        // Determine a base correta para a carta
+        //Carta deve ser &(mesa->descarte)
+        int baseCorreta = DeterminarBaseCorreta(mesa, carta);
+
+        // Adicione a carta à base correta
+        if (baseCorreta>=0) {
+            AdicionarNoTopo(&mesa->bases[baseCorreta], carta);
+        }
+
     } else {
         // Trate o caso em que o descarte está vazio
-        printf("O descarte está vazio. Não é possível mover cartas para as bases.\n");
-        // Você pode adicionar um tratamento personalizado aqui, se necessário.
+        printf("O descarte está vazio. Nao e possivel mover cartas para as bases.\n");
     }
 }
 
-
 void MoverDescarteParaTableau(Mesa* mesa, int indiceTableau) {
-    // Verificar se o descarte está vazio
+    // Verificar se o descarte est  vazio
     if (EstaVazia(&(mesa->descarte))) {
-        printf("O descarte está vazio. Não há cartas para mover para o tableau.\n");
+        printf("O descarte est  vazio. N o h  cartas para mover para o tableau.\n");
         return;
     }
 
-    // Verificar se o índice do tableau é válido
+    // Verificar se o  ndice do tableau   valido
     if (indiceTableau < 0 || indiceTableau >= 7) {
-        printf("O índice do tableau é inválido.\n");
+        printf("O  ndice do tableau   inv lido.\n");
         return;
     }
 
     // Obter a carta do topo do descarte
     Carta cartaDescarte;
     RetirarDoTopo(&(mesa->descarte), &cartaDescarte);
-
     // Verificar se a carta pode ser movida para o tableau
-    if (mesa->tableau[indiceTableau].tamanho == 0 ||
-        verificarSequenciaAlternada(cartaDescarte, mesa->tableau[indiceTableau].cartas[mesa->tableau[indiceTableau].tamanho - 1])) {
+    if (mesa->tableau[indiceTableau].tamanho == 0) {
+        if (cartaDescarte.valor == 12) {
+            AdicionarNoTopo(&(mesa->tableau[indiceTableau]), cartaDescarte);
+            printf("A carta foi movida para o tableau %d.\n", indiceTableau + 1);
+        }
+        else {
+            printf("A carta nao foi movida para o tableau porque nao é um rei %d.\n", indiceTableau + 1);
+        }
+
+    }
+    // mesa->tableau[indiceTableau] é uma lista de carta
+    // Verificar se a carta pode ser movida para o tableau
+    No* noAtual = mesa->tableau[indiceTableau].topo;
+    if (verificarSequenciaAlternada(cartaDescarte, noAtual->carta)) {
         // A carta pode ser movida para o tableau
-        AdicionarNoTopo(&(mesa->tableau[indiceTableau].cartas), cartaDescarte);
+        AdicionarNoTopo(&(mesa->tableau[indiceTableau]), cartaDescarte);
         printf("A carta foi movida para o tableau %d.\n", indiceTableau + 1);
     } else {
-        // Se a carta não puder ser movida para o tableau, retorna ao descarte
+        // Se a carta n o puder ser movida para o tableau, retorna ao descarte
         AdicionarNoTopo(&(mesa->descarte), cartaDescarte);
-        printf("A carta não pode ser movida para o tableau %d.\n", indiceTableau + 1);
+        printf("A carta n o pode ser movida para o tableau %d.\n", indiceTableau + 1);
     }
 }
 
 
+/*
 void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
     // Verificar se o índice do tableau é válido
     if (indiceTableau < 0 || indiceTableau >= 7) {

@@ -19,6 +19,7 @@ void PrepararMesa(Mesa* mesa);
 int VerificarVitoria(Mesa* mesa);
 void ExibirMesa(Mesa* mesa);
 void ComprarCarta(Mesa* mesa);
+int DeterminarBaseCorreta(Mesa* mesa, Carta carta);
 void MoverDescarteParaBases(Mesa* mesa);
 void MoverDescarteParaTableau(Mesa* mesa, int indiceTableau);
 void MoverTableauParaBases(Mesa* mesa, int indiceTableau);
