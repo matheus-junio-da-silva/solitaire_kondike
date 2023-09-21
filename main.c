@@ -51,6 +51,8 @@ int main() {
 
     ExibirMesa(&mesa);
 
+    VerificarVitoria(&mesa);
+
     return 0;
 }
 

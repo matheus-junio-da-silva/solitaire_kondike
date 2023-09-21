@@ -92,11 +92,12 @@ void PrepararMesa(Mesa* mesa) {
 
 }
 
-/*
+
 int VerificarVitoria(Mesa* mesa) {
     // Verificar se todas as bases têm 13 cartas (uma de cada naipe)
     for (int naipe = 0; naipe < 4; naipe++) {
-        if (mesa->bases.tamanho != 13) {
+        if (mesa->bases[naipe].tamanho != 13) {
+            printf("Ainda não venceu.\n");
             return 0; // Ainda não venceu
         }
     }
@@ -104,14 +105,16 @@ int VerificarVitoria(Mesa* mesa) {
     // Verificar se todas as colunas do tableau estão vazias
     for (int coluna = 0; coluna < 7; coluna++) {
         if (!EstaVazia(&(mesa->tableau[coluna]))) {
+            printf("Ainda não venceu.\n");
             return 0; // Ainda não venceu
         }
     }
 
     // Se todas as bases têm 13 cartas e todas as colunas do tableau estão vazias, então venceu
+    printf("venceu.\n");
     return 1;
 }
-*/
+
 
 void ExibirMesa(Mesa* mesa) {
     // exibe a base
@@ -129,31 +132,7 @@ void ExibirMesa(Mesa* mesa) {
 
     // Exibir a pontuação
     printf("Pontuacao: %d\n", mesa->pontuacao);
-    /*
-    // Exibir as bases
-    printf("Bases:\n");
-    for (int naipe = 0; naipe < NUM_NAIPE; naipe++) {
-        printf("[%c] ", NomeNaipe(naipe));
-        ExibirListaDeCartas(&(mesa->bases), 1); // Exibir todas as cartas
-        printf("\n");
-    }
 
-    // Exibir o tableau
-    printf("Tableau:\n");
-    for (int coluna = 0; coluna < NUM_COLUNAS_TABLEAU; coluna++) {
-        printf("Coluna %d: ", coluna + 1);
-        ExibirListaDeCartas(&(mesa->tableau[coluna]), 1); // Exibir todas as cartas
-        printf("\n");
-    }
-
-    // Exibir o descarte
-    printf("Descarte: ");
-    ExibirListaDeCartas(&(mesa->descarte), 1); // Exibir todas as cartas
-    printf("\n");
-
-    // Exibir a pontuação
-    printf("Pontuação: %d\n", mesa->pontuacao);
-    */
 }
 
 /*
