@@ -301,6 +301,12 @@ void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
                 // !!!! a base 0 é de copas !!!!
                 // ------------------------------------------------------------------------
                 AdicionarNoTopo(&(mesa->bases[naipeCarta]), cartaTableau);
+                // virar a carta --------------------------------------------
+                Carta cartaComprada;
+                RetirarDoTopo(&(mesa->tableau[indiceTableau]), &cartaComprada);
+                alterarPosicao(&cartaComprada, 1);
+                AdicionarNoTopo(&(mesa->tableau[indiceTableau]), cartaComprada);
+                // -----------------------------------------------------
                 printf("A carta foi movida para a base c =0, E = 1, o = 2, ,p = 3 : %c.\n", naipeCarta == 0 ? 'C' : (naipeCarta == 1 ? 'E' : (naipeCarta == 2 ? 'O' : 'P')));
                 return;
             }
@@ -455,49 +461,3 @@ void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int i
     }
 }
 
-/*
-
-
-void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int indiceDestino) {
-    // Verificar se os índices de origem e destino são válidos
-    if (indiceOrigem < 0 || indiceOrigem >= 7 || indiceDestino < 0 || indiceDestino >= 7) {
-        printf("Índice de origem ou destino inválido.\n");
-        return;
-    }
-
-    // Verificar se a coluna de origem possui pelo menos 'qtdCartas' cartas
-    if (Tamanho(&(mesa->tableau[indiceOrigem].cartas)) < qtdCartas) {
-        printf("A coluna de origem não possui cartas suficientes para mover.\n");
-        return;
-    }
-
-    // Obter a lista de cartas da coluna de origem
-    ListaDeCartas* origem = &(mesa->tableau[indiceOrigem].cartas);
-
-    // Verificar se a coluna de destino está vazia
-    if (Tamanho(&(mesa->tableau[indiceDestino].cartas)) == 0) {
-        // Movimentar as 'qtdCartas' cartas da coluna de origem para a coluna de destino
-        for (int i = 0; i < qtdCartas; i++) {
-            Carta cartaMovida;
-            RetirarDoTopo(origem, &cartaMovida);
-            AdicionarNoTopo(&(mesa->tableau[indiceDestino].cartas), cartaMovida);
-        }
-        printf("%d carta(s) movida(s) da coluna %d para a coluna %d.\n", qtdCartas, indiceOrigem + 1, indiceDestino + 1);
-    } else {
-        // Verificar se a carta do topo da coluna de origem pode ser movida para a coluna de destino
-        Carta cartaOrigemTopo;
-        Carta cartaDestinoTopo;
-        CartaNoTopo(origem, &cartaOrigemTopo);
-        CartaNoTopo(&(mesa->tableau[indiceDestino].cartas), &cartaDestinoTopo);
-
-        if (verificarSequenciaAlternada(cartaOrigemTopo, cartaDestinoTopo) && qtdCartas == 1) {
-            // Movimentar a carta da coluna de origem para a coluna de destino
-            RetirarDoTopo(origem, &cartaOrigemTopo);
-            AdicionarNoTopo(&(mesa->tableau[indiceDestino].cartas), cartaOrigemTopo);
-            printf("Uma carta movida da coluna %d para a coluna %d.\n", indiceOrigem + 1, indiceDestino + 1);
-        } else {
-            printf("Movimento inválido. Verifique as regras do jogo.\n");
-        }
-    }
-}
-*/
