@@ -324,9 +324,6 @@ void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
     }
 }
 
-/*
-
-
 void MoverBasesParaTableau(Mesa* mesa, int indiceBase, int indiceTableau) {
     // Verificar se os índices da base e do tableau são válidos
     if (indiceBase < 0 || indiceBase >= 4 || indiceTableau < 0 || indiceTableau >= 7) {
@@ -335,25 +332,35 @@ void MoverBasesParaTableau(Mesa* mesa, int indiceBase, int indiceTableau) {
     }
 
     // Verificar se a base selecionada não está vazia
-    if (Tamanho(&(mesa->bases.cartas)) == 0) {
+    if (Tamanho(&(mesa->bases[indiceBase])) == 0) {
         printf("A base %c está vazia. Não há cartas para mover para o tableau.\n", indiceBase == 0 ? 'C' : (indiceBase == 1 ? 'E' : (indiceBase == 2 ? 'O' : 'P')));
         return;
     }
 
     // Obter a carta do topo da base
     Carta cartaBase;
-    RetirarDoTopo(&(mesa->bases.cartas), &cartaBase);
+    RetirarDoTopo(&(mesa->bases[indiceBase]), &cartaBase);
 
     // Verificar se o tableau está vazio ou se a carta pode ser movida para o tableau
- if (Tamanho(&(mesa->tableau[indiceTableau].cartas)) == 0 || verificarSequenciaAlternada(cartaBase, &(mesa->tableau[indiceTableau].cartas.topo->carta))) {
-        printf("A carta foi movida para o tableau %d.\n", indiceTableau + 1);
-    } else {
+    // se coluna tableau for 0 e for uma carta rei
+    if (Tamanho(&(mesa->tableau[indiceTableau])) == 0 && mesa->tableau[indiceTableau].topo->carta.valor == 12) {
+        AdicionarNoTopo(&(mesa->tableau[indiceTableau]), cartaBase);
+        printf("A carta foi movida para o tableau (rei)%d.\n", indiceTableau + 1);
+    } else if (verificarSequenciaAlternada(cartaBase, mesa->tableau[indiceTableau].topo->carta)) { // cartas sem ser o rei
+        AdicionarNoTopo(&(mesa->tableau[indiceTableau]), cartaBase);
+    }
+    else {
         // Se a carta não puder ser movida para o tableau, retorna à base
-        AdicionarNoTopo(&(mesa->bases.cartas), cartaBase);
+        AdicionarNoTopo(&(mesa->bases[indiceBase]), cartaBase);
         printf("A carta não pode ser movida para o tableau.\n");
     }
 }
 
+/*
+
+if (Tamanho(&(mesa->tableau[indiceTableau])) == 0 || verificarSequenciaAlternada(cartaBase, mesa->tableau[indiceTableau].topo->carta)) {
+        printf("A carta foi movida para o tableau %d.\n", indiceTableau + 1);
+    }
 
 void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int indiceDestino) {
     // Verificar se os índices de origem e destino são válidos

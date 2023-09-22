@@ -67,12 +67,21 @@ int main() {
     ExibirMesa(&mesa);
 
     int indice;
+    int indice2;
+    int indice3;
     printf("Digite o índice da coluna tableau 0 a 6: ");
     scanf("%d", &indice);
 
     //MoverDescarteParaTableau(&mesa, indice);
 
     MoverTableauParaBases(&mesa, indice);
+    ExibirMesa(&mesa);
+
+    printf("Digite o índice da base a ser retirada a carta 0 a 3: ");
+    scanf("%d", &indice2);
+    printf("Digite o índice da coluna tableau a ser colocada a carta 0 a 6: ");
+    scanf("%d", &indice3);
+    MoverBasesParaTableau(&mesa, indice2 , indice3);
     ExibirMesa(&mesa);
     return 0;
 }
