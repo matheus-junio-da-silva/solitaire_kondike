@@ -176,15 +176,27 @@ void ComprarCarta(Mesa* mesa) {
 int DeterminarBaseCorreta(Mesa* mesa, Carta carta) {
     // Percorra todas as bases
     for (int i = 0; i < 4; i++) {
-        // Se a base estiver vazia e a carta for um Ás, esta é a base correta
-        if (EstaVazia(&mesa->bases[i]) && carta.valor == 0) {
-            return i;
-        }
-
         // Se a base não estiver vazia, verifique se o naipe é o mesmo e o valor é um maior
         if (!EstaVazia(&mesa->bases[i]) && mesa->bases[i].topo->carta.naipe == carta.naipe && mesa->bases[i].topo->carta.valor == carta.valor - 1) {
             return i;
         }
+    }
+    // nao funciona no for, causa: funcao mover tableau para base
+    No* noAtual = mesa->descarte.topo;
+    if (EstaVazia(&mesa->bases[0]) && carta.valor == 0 && noAtual->carta.naipe == 0) {
+        return 0;
+    }
+
+    if (EstaVazia(&mesa->bases[1]) && carta.valor == 0 && noAtual->carta.naipe == 1) {
+        return 1;
+    }
+
+    if (EstaVazia(&mesa->bases[2]) && carta.valor == 0 && noAtual->carta.naipe == 2) {
+        return 2;
+    }
+
+    if (EstaVazia(&mesa->bases[3]) && carta.valor == 0 && noAtual->carta.naipe == 3) {
+        return 3;
     }
 
     // Se nenhuma base for adequada, retorne -1
@@ -201,7 +213,6 @@ void MoverDescarteParaBases(Mesa* mesa) {
         RetirarDoTopo(&mesa->descarte, &carta);
 
         // Determine a base correta para a carta
-        //Carta deve ser &(mesa->descarte)
         int baseCorreta = DeterminarBaseCorreta(mesa, carta);
 
         // Adicione a carta à base correta
@@ -256,6 +267,9 @@ void MoverDescarteParaTableau(Mesa* mesa, int indiceTableau) {
     }
 }
 
+// a escolha da base 0, 1, 2, 3 é automatica
+// nao sendo preciso a escolha da base de destino
+// 0 para copas ....
 void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
     // Verificar se o índice do tableau é válido
     if (indiceTableau < 0 || indiceTableau >= 7) {
@@ -276,15 +290,22 @@ void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
     // Verificar se a carta pode ser movida para as bases do mesmo naipe
     int naipeCarta = retornarNaipe(cartaTableau);
 
+    // verifica o naipe é de 0 a 3
     if (naipeCarta >= 0 && naipeCarta <= 3) {
-        if (Tamanho(&(mesa->tableau[indiceTableau])) == 0) {
+        // retorna o tamanho da coluna(naipe) da base
+        if (Tamanho(&(mesa->bases[naipeCarta])) == 0) {
+            // retorna o valor da carta do topo do tableau
             if (retornarValor(cartaTableau) == 0) {
                 // A carta AS do naipe pode ser movida para a base
+                // ------------------------------------------------------------------------
+                // !!!! a base 0 é de copas !!!!
+                // ------------------------------------------------------------------------
                 AdicionarNoTopo(&(mesa->bases[naipeCarta]), cartaTableau);
-                printf("A carta foi movida para a base %c.\n", naipeCarta == 0 ? 'C' : (naipeCarta == 1 ? 'E' : (naipeCarta == 2 ? 'O' : 'P')));
+                printf("A carta foi movida para a base c =0, E = 1, o = 2, ,p = 3 : %c.\n", naipeCarta == 0 ? 'C' : (naipeCarta == 1 ? 'E' : (naipeCarta == 2 ? 'O' : 'P')));
                 return;
             }
         } else {
+            // valores maiores que 0(as)
             Carta cartaBase;
             if (CartaNoTopoExtra(&(mesa->bases[naipeCarta]), &cartaBase)) {
                 // Verificar se a carta do tableau pode ser adicionada ao topo das bases
@@ -304,56 +325,6 @@ void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
 }
 
 /*
-void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
-    // Verificar se o índice do tableau é válido
-    if (indiceTableau < 0 || indiceTableau >= 7) {
-        printf("O índice do tableau é inválido.\n");
-        return;
-    }
-
-    // Verificar se o tableau está vazio
-    if (Tamanho(&(mesa->tableau[indiceTableau].cartas)) == 0) {
-        printf("O tableau %d está vazio. Não há cartas para mover para as bases.\n", indiceTableau + 1);
-        return;
-    }
-
-    // Obter a carta do topo do tableau
-    Carta cartaTableau;
-    RetirarDoTopo(&(mesa->tableau[indiceTableau].cartas), &cartaTableau);
-
-    // Verificar se a carta pode ser movida para as bases do mesmo naipe
-    int naipeCarta = retornarNaipe(cartaTableau);
-
-    if (naipeCarta >= 0 && naipeCarta <= 3) {
-        if (Tamanho(&(mesa->bases.cartas)) == 0) {
-            if (retornarValor(cartaTableau) == 0) {
-                // A carta AS do naipe pode ser movida para a base
-                AdicionarNoTopo(&(mesa->bases.cartas), cartaTableau);
-                printf("A carta foi movida para a base %c.\n", naipeCarta == 0 ? 'C' : (naipeCarta == 1 ? 'E' : (naipeCarta == 2 ? 'O' : 'P')));
-                return;
-            }
-        } else {
-            Carta cartaBase;
-            if (CartaNoTopo(&(mesa->bases.cartas), &cartaBase)) {
-                // Verificar se a carta do tableau pode ser adicionada ao topo das bases
-                if (retornarNaipe(cartaBase) == naipeCarta && retornarValor(cartaBase) == retornarValor(cartaTableau) - 1) {
-                    AdicionarNoTopo(&(mesa->bases.cartas), cartaTableau);
-                    printf("A carta foi movida para a base %c.\n", naipeCarta == 0 ? 'C' : (naipeCarta == 1 ? 'E' : (naipeCarta == 2 ? 'O' : 'P')));
-                    return;
-                } else {
-                    // A carta não pode ser adicionada às bases
-                    printf("A carta não pode ser movida para as bases.\n");
-                    // Devolver a carta para o tableau
-                    AdicionarNoTopo(&(mesa->tableau[indiceTableau].cartas), cartaTableau);
-                }
-            }
-        }
-    }
-
-    // Se a carta não puder ser movida para as bases, devolvê-la ao tableau
-    AdicionarNoTopo(&(mesa->tableau[indiceTableau].cartas), cartaTableau);
-}
-
 
 
 void MoverBasesParaTableau(Mesa* mesa, int indiceBase, int indiceTableau) {
