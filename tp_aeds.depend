@@ -43,7 +43,7 @@
 	<time.h>
 	"tad_cartas.h"
 
-1695382824 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.c
+1695425866 source:c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -56,7 +56,7 @@
 	<stdlib.h>
 	<string.h>
 
-1695319681 c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.h
+1695425832 c:\users\mathe\onedrive\workspace\solitaire_kondike\tad_mesa.h
 	"tad_cartas.h"
 	"tad_lista_cartas.h"
 

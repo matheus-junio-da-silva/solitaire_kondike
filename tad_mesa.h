@@ -26,5 +26,7 @@ void MoverTableauParaBases(Mesa* mesa, int indiceTableau);
 void MoverBasesParaTableau(Mesa* mesa, int indiceBase, int indiceTableau);
 void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int indiceDestino);
 void LimparBaralho(Mesa *mesa);
+void diminuirPontuacao(Mesa *mesa, int valor);
+void aumentarPontuacao(Mesa *mesa, int valor);
 
 #endif // TAD_MESA_H_INCLUDED
