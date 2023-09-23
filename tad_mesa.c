@@ -41,7 +41,7 @@ void CarregarBaralhoAleatorio(Mesa* mesa) {
     }
     */
 
-    //Embaralhar(&(mesa->baralho));
+    Embaralhar(&(mesa->baralho));
     Exibir(&mesa->baralho, true);
 }
 /*
@@ -157,7 +157,7 @@ void ComprarCarta(Mesa* mesa) {
             // Adicionar a carta ao baralho
             AdicionarNoTopo(&(mesa->baralho), cartaTopoDescarte);
         }
-        //Embaralhar(&(mesa->baralho));
+        Embaralhar(&(mesa->baralho));
     }
 
     // inicializa uma carta
