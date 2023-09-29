@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="ler_arquivo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ler_arquivo.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

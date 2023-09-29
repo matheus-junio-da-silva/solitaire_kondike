@@ -47,7 +47,7 @@ void CarregarBaralhoAleatorio(Mesa* mesa) {
 /*
 Carregar baralho: insere cartas no baralho de acordo com as cartas passadas num
 parâmetro de entrada, preservando a ordem passada.
-
+*/
 void CarregarBaralho(Mesa* mesa, Carta* cartas, int numCartas) {
     // Certifique-se de que o número de cartas a serem carregadas seja válido
     if (numCartas < 0 || numCartas > MAX_CARTAS_MESA) {
@@ -68,7 +68,7 @@ void CarregarBaralho(Mesa* mesa, Carta* cartas, int numCartas) {
         }
     }
 }
-*/
+
 
 void PrepararMesa(Mesa* mesa) {
     // Carrega o baralho aleatório
