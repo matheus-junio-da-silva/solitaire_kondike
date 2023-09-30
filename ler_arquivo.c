@@ -85,20 +85,23 @@ int LerJogoDeArquivo(Mesa* mesa) {
             // Ler o índice do tableau
             fscanf(arquivo, "%d", &parametros[0]);
             // Processar operação DT (Exemplo: DescartarDoTableau(mesa, parametros[0]);)
-            MoverDescarteParaTableau(mesa, parametros[0]);
+            MoverDescarteParaTableau(mesa, (parametros[0])-1);
         } else if (strcmp(operacao, "TB") == 0) {
             // Ler o índice do tableau
             fscanf(arquivo, "%d", &parametros[0]);
             printf("oiiiiii");
             // Processar operação TB (Exemplo: MoverParaBaralhoDoTableau(mesa, parametros[0]);)
+            MoverTableauParaBases(mesa, (parametros[0])-1);
         } else if (strcmp(operacao, "BT") == 0) {
             // Ler o naipe e o índice do tableau
             fscanf(arquivo, " %c %d", &naipe, &parametros[0]);
             // Processar operação BT (Exemplo: MoverCartaParaTableau(mesa, naipe, parametros[0]);)
+            MoverBasesParaTableau(mesa, (parametros[0]), (parametros[1])-1);
         } else if (strcmp(operacao, "TT") == 0) {
             // Ler os três parâmetros: quantidade, índice de origem e índice de destino
             fscanf(arquivo, "%d %d %d", &parametros[0], &parametros[1], &parametros[2]);
             // Processar operação TT (Exemplo: MoverCartasEntreColunasTableau(mesa, parametros[0], parametros[1], parametros[2]);)
+            MoverEntreColunasTableau(mesa, (parametros[0])-1, (parametros[1])-1, (parametros[2])-1);
         } else {
             printf("Operacao desconhecida: %s\n", operacao);
         }

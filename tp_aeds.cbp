@@ -31,6 +31,10 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="interativo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="interativo.h" />
 		<Unit filename="ler_arquivo.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -50,6 +54,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="tad_mesa.h" />
+		<Unit filename="teste.txt" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

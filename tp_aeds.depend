@@ -117,7 +117,7 @@
 	"tad_lista_cartas.h"
 	"tad_mesa.h"
 
-1696035450 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\ler_arquivo.c
+1696040530 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\ler_arquivo.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
