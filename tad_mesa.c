@@ -161,22 +161,24 @@ void ComprarCarta(Mesa* mesa) {
         }
         Embaralhar(&(mesa->baralho));
     }
+    if(mesa->baralho.tamanho != 0) {
+        // inicializa uma carta
+        Carta cartaComprada;
+        //retira do topo e coloca em cartaComprada
+        // a funcao AdicionarNoTopo ja decrementa 1 no tamanho
+        RetirarDoTopo(&(mesa->baralho), &cartaComprada);
+        // vira a carta para cima
+        alterarPosicao(&cartaComprada, 1);
+        // Adicionar a carta ao descarte
+        // a funcao AdicionarNoTopo ja incrementa 1 no tamanho
+        AdicionarNoTopo(&(mesa->descarte), cartaComprada);
+        // Exibir a carta comprada
+        printf("O tamanho do descarte é: %d\n", mesa->descarte.tamanho);
+        printf("Você comprou a seguinte carta:\n");
 
-    // inicializa uma carta
-    Carta cartaComprada;
-    //retira do topo e coloca em cartaComprada
-    // a funcao AdicionarNoTopo ja decrementa 1 no tamanho
-    RetirarDoTopo(&(mesa->baralho), &cartaComprada);
-    // vira a carta para cima
-    alterarPosicao(&cartaComprada, 1);
-    // Adicionar a carta ao descarte
-    // a funcao AdicionarNoTopo ja incrementa 1 no tamanho
-    AdicionarNoTopo(&(mesa->descarte), cartaComprada);
-    // Exibir a carta comprada
-    printf("O tamanho do descarte é: %d\n", mesa->descarte.tamanho);
-    printf("Você comprou a seguinte carta:\n");
-
-    exibir_carta(cartaComprada);
+        exibir_carta(cartaComprada);
+    }
+    printf("Não há mais cartas no baralho para comprar.\n");
 }
 
 int DeterminarBaseCorreta(Mesa* mesa, Carta carta) {
@@ -225,6 +227,9 @@ void MoverDescarteParaBases(Mesa* mesa) {
         if (baseCorreta>=0) {
             AdicionarNoTopo(&mesa->bases[baseCorreta], carta);
             aumentarPontuacao(mesa, 10);
+        } else {
+            // voltando para o topo do descarte
+            AdicionarNoTopo(&mesa->descarte, carta);
         }
 
     } else {

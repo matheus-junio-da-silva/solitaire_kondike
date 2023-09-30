@@ -11,3 +11,5 @@ void ExibirMenu();
 void ModoInterativo();
 int LerJogoDeArquivo(Mesa* mesa);
 void AdicionarCartaAoBaralho(Mesa* mesa, int valor, char naipe);
+void PrepMesa(Mesa* mesa);
+int VerificarVitoriaArquivo(Mesa* mesa);
