@@ -44,10 +44,12 @@ void CarregarBaralhoAleatorio(Mesa* mesa) {
     Embaralhar(&(mesa->baralho));
     Exibir(&mesa->baralho, true);
 }
+
 /*
 Carregar baralho: insere cartas no baralho de acordo com as cartas passadas num
 parâmetro de entrada, preservando a ordem passada.
 */
+
 void CarregarBaralho(Mesa* mesa, Carta* cartas, int numCartas) {
     // Certifique-se de que o número de cartas a serem carregadas seja válido
     if (numCartas < 0 || numCartas > MAX_CARTAS_MESA) {
@@ -56,7 +58,7 @@ void CarregarBaralho(Mesa* mesa, Carta* cartas, int numCartas) {
     }
 
     // Limpa o baralho existente antes de carregar as novas cartas
-    LimparBaralho(mesa);
+    //LimparBaralho(mesa);
 
     // Adiciona as cartas ao baralho da mesa
     for (int i = 0; i < numCartas; i++) {

@@ -72,7 +72,7 @@
 	"tad_cartas.h"
 	<stdbool.h>
 
-1695836473 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\main.c
+1696033831 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\main.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -80,6 +80,7 @@
 	"tad_lista_cartas.h"
 	"tad_mesa.h"
 	"ler_arquivo.h"
+	"interativo.h"
 
 1695835586 c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\tad_cartas.h
 	<stdio.h>
@@ -108,7 +109,7 @@
 	"tad_cartas.h"
 	"tad_lista_cartas.h"
 
-1695835586 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\tad_mesa.c
+1696030784 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\tad_mesa.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -116,7 +117,7 @@
 	"tad_lista_cartas.h"
 	"tad_mesa.h"
 
-1695836363 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\ler_arquivo.c
+1696035450 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\ler_arquivo.c
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -125,7 +126,7 @@
 	"tad_lista_cartas.h"
 	"tad_mesa.h"
 
-1695836601 c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\ler_arquivo.h
+1696033756 c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\ler_arquivo.h
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -133,4 +134,22 @@
 	"tad_cartas.h"
 	"tad_lista_cartas.h"
 	"tad_mesa.h"
+
+1696032367 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\interativo.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+	"tad_mesa.h"
+	"ler_arquivo.h"
+
+1696032447 c:\users\mathe\onedrive\workspace\solitaire_kondlike_v_2\solitaire_kondike\interativo.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+	"tad_mesa.h"
+	"ler_arquivo.h"
 

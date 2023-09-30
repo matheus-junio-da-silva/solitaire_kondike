@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <string.h>
 
 #include "tad_cartas.h"
 #include "tad_lista_cartas.h"
 #include "tad_mesa.h"
-
-void ExibirMenu();
+#include "ler_arquivo.h"
+#ifndef INTERATIVO_H
+#define INTERATIVO_H
 void ModoInterativo();
-int LerJogoDeArquivo(Mesa* mesa);
-void AdicionarCartaAoBaralho(Mesa* mesa, int valor, char naipe);
+
+#endif

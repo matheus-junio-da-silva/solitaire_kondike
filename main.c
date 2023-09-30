@@ -6,7 +6,7 @@
 #include "tad_lista_cartas.h"
 #include "tad_mesa.h"
 #include "ler_arquivo.h"
-
+#include "interativo.h"
 int main() {
 
     printf("Bem-vindo ao jogo de Paciencia!\n");
@@ -18,13 +18,19 @@ int main() {
     if (modo == 1) {
         ModoInterativo();
     } else if (modo == 2) {
-        char arquivo[100];
-        printf("Informe o caminho do arquivo: ");
-        scanf("%s", arquivo);
+        //FILE *arquivo;
+        //char nome_do_arquivo[100] = "teste.txt";
+        //arquivo = fopen(nome_do_arquivo, "r");
+        /*
+        if (arquivo == NULL) {
+            printf("Não foi possível abrir o arquivo %s\n", nome_do_arquivo);
+            return 1;
+        }
+        */
         Mesa mesa;
         InicializarMesa(&mesa);
-        CarregarBaralho(&mesa);
-        LerJogoDeArquivo(&mesa, arquivo);
+        LerJogoDeArquivo(&mesa);
+
     } else {
         printf("Modo invalido. Encerrando o jogo.\n");
     }
