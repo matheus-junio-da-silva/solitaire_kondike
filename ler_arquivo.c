@@ -37,13 +37,12 @@ void PrepMesa(Mesa* mesa) {
         for (int j = 0; j < i + 1; j++) {
             Carta carta; // inicializa uma carta para rebeber uma carta que estava no topo
             RetirarDoTopo(&(mesa->baralho), &carta);
-            /*
+
             if (j == i) {
                 // A última carta em cada coluna fica virada para cima, obs: ultimo de cada loop do j
                 alterarPosicao(&carta, 1);
             }
-            */
-            alterarPosicao(&carta, 1);
+            //alterarPosicao(&carta, 1);
             AdicionarNoTopo(&(mesa->tableau[i]), carta);
         }
     }
@@ -92,12 +91,13 @@ void ExibirMenu() {
 }
 
 int LerJogoDeArquivo(Mesa* mesa) {
-    //char nomeArquivo[100] = "teste.txt";
+    char nomeArquivo[100] = "teste2.txt";
+    /*
     char nomeArquivo[100];
     printf("Digite o nome do arquivo: ");
     scanf("%s", nomeArquivo);
     printf("O nome do arquivo digitado foi: %s\n", nomeArquivo);
-
+    */
     FILE* arquivo = fopen(nomeArquivo, "r");
 
     if (arquivo == NULL) {
@@ -129,6 +129,8 @@ int LerJogoDeArquivo(Mesa* mesa) {
 
     PrepMesa(mesa);
 
+    ExibirMesa(mesa);
+
     char operacao[3];  // Para armazenar as operações (CC, DB, DT, TB, BT, ou TT)
     int parametros[3];  // Para armazenar os parâmetros das operações
     char linha[10];
@@ -140,20 +142,28 @@ int LerJogoDeArquivo(Mesa* mesa) {
         }
         if (strcmp(operacao, "CC") == 0) {
             ComprarCarta(mesa);
+            ExibirMesa(mesa);
         } else if (strcmp(operacao, "DB") == 0) {
             // Processar operação DB (Exemplo: DescartarDoBaralho(mesa);)
+
             MoverDescarteParaBases(mesa);
+            ExibirMesa(mesa);
+
         } else if (strcmp(operacao, "DT") == 0) {
             // Ler o índice do tableau
             fscanf(arquivo, "%d", &parametros[0]);
             // Processar operação DT (Exemplo: DescartarDoTableau(mesa, parametros[0]);)
+
             MoverDescarteParaTableau(mesa, (parametros[0])-1);
+            ExibirMesa(mesa);
+
         } else if (strcmp(operacao, "TB") == 0) {
             // Ler o índice do tableau
             fscanf(arquivo, "%d", &parametros[0]);
             printf("oiiiiii");
             // Processar operação TB (Exemplo: MoverParaBaralhoDoTableau(mesa, parametros[0]);)
             MoverTableauParaBases(mesa, (parametros[0])-1);
+            ExibirMesa(mesa);
         } else if (strcmp(operacao, "BT") == 0) {
             // Ler o naipe e o índice do tableau
             fscanf(arquivo, "%s", linha);
@@ -177,19 +187,36 @@ int LerJogoDeArquivo(Mesa* mesa) {
             printf("base desconhecida: %c\n", base[0]);
             return 0;  // Retorne se o naipe for desconhecido
             }
-
+            ExibirMesa(mesa);
 
 
         } else if (strcmp(operacao, "TT") == 0) {
             // Ler os três parâmetros: quantidade, índice de origem e índice de destino
             fscanf(arquivo, "%d %d %d", &parametros[0], &parametros[1], &parametros[2]);
             // Processar operação TT (Exemplo: MoverCartasEntreColunasTableau(mesa, parametros[0], parametros[1], parametros[2]);)
-            MoverEntreColunasTableau(mesa, (parametros[0])-1, (parametros[1])-1, (parametros[2])-1);
-        } else {
+            printf("zzzzzzzzzz");
+            MoverEntreColunasTableau(mesa, (parametros[0]), (parametros[1])-1, (parametros[2])-1);
+            printf("aaaaaaaaaaaa");
+            ExibirMesa(mesa);
+        }else if (strcmp(operacao, "X") == 0) {
+            ExibirMesa(mesa);
+            printf("Pontuacao: %d\n", mesa->pontuacao);
+        }else {
             printf("Operacao desconhecida: %s\n", operacao);
         }
+
+    }
+    if (feof(arquivo)) {
+        printf("Fim do arquivo alcançado.\n");
+    } else if (ferror(arquivo)) {
+        printf("Erro durante a leitura do arquivo.\n");
+    } else {
+        printf("aaaaaaaaaaaa");
     }
 
+
+    ExibirMesa(mesa);
+    printf("Pontuacao: %d\n", mesa->pontuacao);
     fclose(arquivo);
     return 1;  // Retornar 1 para indicar sucesso
 }

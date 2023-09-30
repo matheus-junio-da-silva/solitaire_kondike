@@ -331,10 +331,11 @@ void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
             }
         } else {
             // valores maiores que 0(as)
-            printf("oiiiiiiiiiiiiii\n");
+            printf("oleeeeeeeeee\n");
+            int count = 0;
             Carta cartaBase;
             if (CartaNoTopoExtra(&(mesa->bases[naipeCarta]), &cartaBase)) {
-                printf("oiiiiiiiiiiiiii\n");
+
                 // Verificar se a carta do tableau pode ser adicionada ao topo das bases
                 if (retornarNaipe(cartaBase) == naipeCarta && retornarValor(cartaBase) == retornarValor(cartaTableau) - 1) {
                     printf("oiiiiiiiiiiiiii\n");
@@ -355,9 +356,21 @@ void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
                     printf("A carta não pode ser movida para as bases.\n");
                     // Devolver a carta para o tableau
                     AdicionarNoTopo(&(mesa->tableau[indiceTableau]), cartaTableau);
+                    count++;
                 }
+
             }
+
+            // para a carta nao ser voltada para o tableau duas vezes
+            if(count == 0) {
+                // A carta não pode ser adicionada às bases
+                printf("A carta não pode ser movida para as bases.\n");
+                // Devolver a carta para o tableau
+                AdicionarNoTopo(&(mesa->tableau[indiceTableau]), cartaTableau);
+            }
+
         }
+
     }
 }
 
@@ -414,8 +427,13 @@ void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int i
     for (int i = 0; i < qtdCartas; i++) {
         Carta cartaMovidaTemporaria;
         RetirarDoTopo(&(mesa->tableau[indiceOrigem]), &cartaMovidaTemporaria);
-        AdicionarNoTopo(&(listaTem), cartaMovidaTemporaria);
-        printf("Uma carta movida para a lista temporaria 1\n");
+        if(cartaMovidaTemporaria.virada_para_cima == 1) {
+            AdicionarNoTopo(&(listaTem), cartaMovidaTemporaria);
+            printf("Uma carta movida para a lista temporaria a\n");
+            ExibirMesa(mesa);
+        } else {
+            AdicionarNoTopo(&(mesa->tableau[indiceOrigem]), cartaMovidaTemporaria);
+        }
     }
     //--------------------------------------------------------------------------------------
     Carta cartaTopoListaTem;
@@ -430,7 +448,7 @@ void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int i
             Carta cartaMovidaTemporaria;
             RetirarDoTopo(&(listaTem), &cartaMovidaTemporaria); // lembrar de voltar as cartas caso nao faça a troca
             AdicionarNoTopo(&(mesa->tableau[indiceOrigem]), cartaMovidaTemporaria);
-            printf("Uma carta movida origem para destino 1\n");
+            printf("Uma carta movida origem para destino b\n");
         }
         //--------------------------------------------------------------------------------------
 
@@ -439,13 +457,13 @@ void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int i
             Carta cartaMovidaTemporaria;
             RetirarDoTopo(&(mesa->tableau[indiceOrigem]), &cartaMovidaTemporaria); // lembrar de voltar as cartas caso nao faça a troca
             AdicionarNoTopo(&(listaTemporaria), cartaMovidaTemporaria);
-            printf("Uma carta movida para a lista temporaria 1\n");
+            printf("Uma carta movida para a lista temporaria c\n");
         }
         for (int i = 0; i < qtdCartas; i++) {
             Carta cartaMovidaTemporaria;
             RetirarDoTopo(&(listaTemporaria), &cartaMovidaTemporaria); // lembrar de voltar as cartas caso nao faça a troca
             AdicionarNoTopo(&(mesa->tableau[indiceDestino]), cartaMovidaTemporaria);
-            printf("Uma carta movida origem para destino 1\n");
+            printf("Uma carta movida origem para destino d\n");
         }
         printf("%d carta(s) movida(s) da coluna %d para a coluna %d.\n", qtdCartas, indiceOrigem + 1, indiceDestino + 1);
     } else {
@@ -456,7 +474,8 @@ void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int i
             Carta cartaMovidaTemporaria;
             RetirarDoTopo(&(listaTem), &cartaMovidaTemporaria); // lembrar de voltar as cartas caso nao faça a troca
             AdicionarNoTopo(&(mesa->tableau[indiceOrigem]), cartaMovidaTemporaria);
-            printf("Uma carta movida origem para destino 1\n");
+            printf("Uma carta movida origem para destino e\n");
+            ExibirMesa(mesa);
         }
         //--------------------------------------------------------------------------------------
 
@@ -466,7 +485,8 @@ void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int i
             Carta cartaMovidaTemporaria;
             RetirarDoTopo(&(mesa->tableau[indiceOrigem]), &cartaMovidaTemporaria); // lembrar de voltar as cartas caso nao faça a troca
             AdicionarNoTopo(&(listaTemporaria), cartaMovidaTemporaria);
-            printf("Uma carta movida para a lista temporaria\n");
+            printf("Uma carta movida para a lista temporaria f\n");
+            ExibirMesa(mesa);
         }
         // recebe o topo da temporaria que é o piso da origem
         Carta cartaTopoListaTemporaria;
@@ -480,15 +500,19 @@ void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int i
                 Carta cartaMovidaTemporaria;
                 RetirarDoTopo(&(listaTemporaria), &cartaMovidaTemporaria); // lembrar de voltar as cartas caso nao faça a troca
                 AdicionarNoTopo(&(mesa->tableau[indiceDestino]), cartaMovidaTemporaria);
-                printf("Uma carta movida origem para destino\n");
+                printf("Uma carta movida origem para destino g\n");
+                ExibirMesa(mesa);
             }
             // virar a carta --------------------------------------------
-            aumentarPontuacao(mesa, 5);
-            Carta cartatempp;
-            RetirarDoTopo(&(mesa->tableau[indiceOrigem]), &cartatempp);
-            alterarPosicao(&cartatempp, 1);
-            AdicionarNoTopo(&(mesa->tableau[indiceOrigem]), cartatempp);
-                // -----------------------------------------------------
+            if(mesa->tableau[indiceOrigem].tamanho != 0) {
+                aumentarPontuacao(mesa, 5);
+                Carta cartatempp;
+                RetirarDoTopo(&(mesa->tableau[indiceOrigem]), &cartatempp);
+                alterarPosicao(&cartatempp, 1);
+                AdicionarNoTopo(&(mesa->tableau[indiceOrigem]), cartatempp);
+                    // -----------------------------------------------------
+            }
+            ExibirMesa(mesa);
         } else {
             // pegando as cartas da lista temporaria e voltando elas para a origem
             for (int i = 0; i < qtdCartas; i++) {

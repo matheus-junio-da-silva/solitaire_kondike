@@ -30,10 +30,17 @@ int main() {
         Mesa mesa;
         InicializarMesa(&mesa);
         LerJogoDeArquivo(&mesa);
+        /*
+        ExibirMesa(&mesa);
+        printf("Pontuacao: %d\n", mesa.pontuacao);
+        */
+
 
     } else {
         printf("Modo invalido. Encerrando o jogo.\n");
     }
+
+    printf("iiiiiiiiiiiiiiiiii");
 
     return 0;
 }

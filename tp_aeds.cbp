@@ -55,6 +55,7 @@
 		</Unit>
 		<Unit filename="tad_mesa.h" />
 		<Unit filename="teste.txt" />
+		<Unit filename="teste2.txt" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
