@@ -247,7 +247,7 @@ void MoverDescarteParaTableau(Mesa* mesa, int indiceTableau) {
 
     // Verificar se o  ndice do tableau   valido
     if (indiceTableau < 0 || indiceTableau >= 7) {
-        printf("O  ndice do tableau   inv lido.\n");
+        printf("O  indice do tableau   invalido.\n");
         return;
     }
 
@@ -277,7 +277,7 @@ void MoverDescarteParaTableau(Mesa* mesa, int indiceTableau) {
     } else {
         // Se a carta n o puder ser movida para o tableau, retorna ao descarte
         AdicionarNoTopo(&(mesa->descarte), cartaDescarte);
-        printf("A carta n o pode ser movida para o tableau %d.\n", indiceTableau + 1);
+        printf("A carta nao pode ser movida para o tableau %d.\n", indiceTableau + 1);
     }
 }
 
@@ -306,13 +306,13 @@ void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
 
     // verifica o naipe é de 0 a 3
     if (naipeCarta >= 0 && naipeCarta <= 3) {
-        printf("eiiiiiiiiiiiiii\n");
+        printf(" \n");
         // retorna o tamanho da coluna(naipe) da base
         if (Tamanho(&(mesa->bases[naipeCarta])) == 0 && retornarValor(cartaTableau) == 0) {
-            printf("eiiiiiiiiiiiiii\n");
+            printf(" \n");
             // retorna o valor da carta do topo do tableau
             if (retornarValor(cartaTableau) == 0) {
-                printf("eiiiiiiiiiiiiii\n");
+                printf(" \n");
                 // A carta AS do naipe pode ser movida para a base
                 // ------------------------------------------------------------------------
                 // !!!! a base 0 é de copas !!!!
@@ -331,14 +331,14 @@ void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
             }
         } else {
             // valores maiores que 0(as)
-            printf("oleeeeeeeeee\n");
+            printf(" \n");
             int count = 0;
             Carta cartaBase;
             if (CartaNoTopoExtra(&(mesa->bases[naipeCarta]), &cartaBase)) {
 
                 // Verificar se a carta do tableau pode ser adicionada ao topo das bases
                 if (retornarNaipe(cartaBase) == naipeCarta && retornarValor(cartaBase) == retornarValor(cartaTableau) - 1) {
-                    printf("oiiiiiiiiiiiiii\n");
+                    printf(" \n");
                     AdicionarNoTopo(&(mesa->bases[naipeCarta]), cartaTableau);
                     aumentarPontuacao(mesa, 10);
                     printf("A carta foi movida para a base %c.\n", naipeCarta == 0 ? 'C' : (naipeCarta == 1 ? 'E' : (naipeCarta == 2 ? 'O' : 'P')));
@@ -351,7 +351,7 @@ void MoverTableauParaBases(Mesa* mesa, int indiceTableau) {
                     // -----------------------------------------------------
                     return;
                 } else {
-                    printf("oiiiiiiiiiiiiii\n");
+                    printf(" \n");
                     // A carta não pode ser adicionada às bases
                     printf("A carta não pode ser movida para as bases.\n");
                     // Devolver a carta para o tableau
@@ -476,6 +476,7 @@ void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int i
             AdicionarNoTopo(&(mesa->tableau[indiceOrigem]), cartaMovidaTemporaria);
             printf("Uma carta movida origem para destino e\n");
             ExibirMesa(mesa);
+            return;
         }
         //--------------------------------------------------------------------------------------
 
@@ -519,7 +520,7 @@ void MoverEntreColunasTableau(Mesa* mesa, int qtdCartas, int indiceOrigem, int i
                 Carta cartaMovidaTemporaria;
                 RetirarDoTopo(&(listaTemporaria), &cartaMovidaTemporaria);
                 AdicionarNoTopo(&(mesa->tableau[indiceOrigem]), cartaMovidaTemporaria);
-                printf("Uma carta devolvida\n");
+                printf("Uma carta devolvida, nao foi possivel mover\n");
             }
         }
     }

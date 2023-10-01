@@ -27,9 +27,14 @@ int main() {
             return 1;
         }
         */
+        int verifica;
         Mesa mesa;
         InicializarMesa(&mesa);
-        LerJogoDeArquivo(&mesa);
+        LerJogoDeArquivo(&mesa, &verifica);
+        if (VerificarDerrota(&mesa, verifica)) {
+            printf("Voce perdeu!\n");
+            return 1;
+        }
         /*
         ExibirMesa(&mesa);
         printf("Pontuacao: %d\n", mesa.pontuacao);
@@ -40,7 +45,7 @@ int main() {
         printf("Modo invalido. Encerrando o jogo.\n");
     }
 
-    printf("iiiiiiiiiiiiiiiiii");
+
 
     return 0;
 }

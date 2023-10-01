@@ -6,26 +6,47 @@
 #include "tad_cartas.h"
 #include "tad_lista_cartas.h"
 #include "tad_mesa.h"
+#include "ler_arquivo.h"
+
+
+int VerificarDerrota(Mesa* mesa,int numCartas) {
+    // Verificar se todas as bases têm 13 cartas (uma de cada naipe)
+
+    int count = 0;
+    for (int naipe = 0; naipe < 4; naipe++) {
+        int valor = mesa->bases[naipe].tamanho;
+        if(valor >= 0){
+            count += valor;
+        }
+    }
+
+    // Se todas as bases têm 13 cartas e todas as colunas do tableau estão vazias, então venceu
+    if(count != numCartas) {
+        //printf("voce nao venceu.\n");
+        return 1;
+    }
+    return 0;
+}
+
 
 int VerificarVitoriaArquivo(Mesa* mesa,int numCartas) {
     // Verificar se todas as bases têm 13 cartas (uma de cada naipe)
 
-    int base[3];
-
-    for (int naipe = 0; naipe < 4; naipe++) {
-        base[naipe] = mesa->bases[naipe].tamanho;
-    }
     int count = 0;
     for (int naipe = 0; naipe < 4; naipe++) {
-        count += base[naipe];
+        int valor = mesa->bases[naipe].tamanho;
+        if(valor >= 0){
+            count += valor;
+        }
     }
     // Se todas as bases têm 13 cartas e todas as colunas do tableau estão vazias, então venceu
     if(count != numCartas) {
         printf("ainda nao venceu.\n");
         return 0;
     }
-    printf("venceu.\n");
-    printf("Pontuacao: %d\n", mesa->pontuacao);
+
+    printf(" \n");
+    //printf("Pontuacao: %d\n", mesa->pontuacao);
     return 1;
 }
 
@@ -90,14 +111,14 @@ void ExibirMenu() {
     printf("6. Sair do jogo.\n");
 }
 
-int LerJogoDeArquivo(Mesa* mesa) {
-    char nomeArquivo[100] = "teste2.txt";
-    /*
+int LerJogoDeArquivo(Mesa* mesa, int* verifica) {
+    //char nomeArquivo[100] = "teste.txt";
+
     char nomeArquivo[100];
     printf("Digite o nome do arquivo: ");
     scanf("%s", nomeArquivo);
     printf("O nome do arquivo digitado foi: %s\n", nomeArquivo);
-    */
+
     FILE* arquivo = fopen(nomeArquivo, "r");
 
     if (arquivo == NULL) {
@@ -110,12 +131,13 @@ int LerJogoDeArquivo(Mesa* mesa) {
 
     // Variáveis temporárias para armazenar informações do arquivo
     int numCartas;
+
     char naipe;
     int valor;
     char base[3];
     // Ler o número de cartas no baralho
     fscanf(arquivo, "%d", &numCartas);
-
+    *verifica = numCartas;
     // Ler e adicionar as cartas ao baralho da mesa
     for (int i = 0; i < numCartas; i++) {
         fscanf(arquivo, "\n(%d %c)", &valor, &naipe);
@@ -160,7 +182,7 @@ int LerJogoDeArquivo(Mesa* mesa) {
         } else if (strcmp(operacao, "TB") == 0) {
             // Ler o índice do tableau
             fscanf(arquivo, "%d", &parametros[0]);
-            printf("oiiiiii");
+            printf(" ");
             // Processar operação TB (Exemplo: MoverParaBaralhoDoTableau(mesa, parametros[0]);)
             MoverTableauParaBases(mesa, (parametros[0])-1);
             ExibirMesa(mesa);
@@ -169,7 +191,7 @@ int LerJogoDeArquivo(Mesa* mesa) {
             fscanf(arquivo, "%s", linha);
             sscanf(linha, "%c %d", &base[0], &parametros[0]);
             // Processar operação BT (Exemplo: MoverCartaParaTableau(mesa, naipe, parametros[0]);)
-            printf("olaaaaaaaaaaaa%c", base[0]);
+            printf("%c", base[0]);
             switch(base[0]) {
             case 'C':  // Copas
                 MoverBasesParaTableau(mesa, 0, parametros[0]);
@@ -194,29 +216,31 @@ int LerJogoDeArquivo(Mesa* mesa) {
             // Ler os três parâmetros: quantidade, índice de origem e índice de destino
             fscanf(arquivo, "%d %d %d", &parametros[0], &parametros[1], &parametros[2]);
             // Processar operação TT (Exemplo: MoverCartasEntreColunasTableau(mesa, parametros[0], parametros[1], parametros[2]);)
-            printf("zzzzzzzzzz");
+            printf(" ");
             MoverEntreColunasTableau(mesa, (parametros[0]), (parametros[1])-1, (parametros[2])-1);
-            printf("aaaaaaaaaaaa");
+            printf(" ");
             ExibirMesa(mesa);
         }else if (strcmp(operacao, "X") == 0) {
             ExibirMesa(mesa);
-            printf("Pontuacao: %d\n", mesa->pontuacao);
+            //printf("Pontuacao: %d\n", mesa->pontuacao);
         }else {
             printf("Operacao desconhecida: %s\n", operacao);
         }
 
+        if (VerificarVitoriaArquivo(mesa, numCartas)) {
+            printf("Parabens! Voce venceu o jogo!\n");
+            return 1;
+        }
     }
     if (feof(arquivo)) {
         printf("Fim do arquivo alcançado.\n");
     } else if (ferror(arquivo)) {
         printf("Erro durante a leitura do arquivo.\n");
     } else {
-        printf("aaaaaaaaaaaa");
+        printf(" ");
     }
 
-
     ExibirMesa(mesa);
-    printf("Pontuacao: %d\n", mesa->pontuacao);
     fclose(arquivo);
     return 1;  // Retornar 1 para indicar sucesso
 }

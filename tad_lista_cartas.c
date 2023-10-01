@@ -7,6 +7,7 @@
 #include "tad_lista_cartas.h"
 
 
+
 // Inicializar a lista
 void Inicializar(ListaDeCartas* lista) {
     lista->topo = NULL;
@@ -62,7 +63,7 @@ void CartaNaPosicao(ListaDeCartas* lista, int posicao, Carta* carta) {
 void AdicionarNoTopo(ListaDeCartas* lista, Carta carta) {
     No* novoTopo = (No*)malloc(sizeof(No));
     if (novoTopo == NULL) {
-        printf("Erro na alocação de memoria");
+        printf("Erro na alocacao de memoria");
         exit(1);
     }
 
@@ -102,7 +103,7 @@ void TransferirCartas(ListaDeCartas* listaOrigem, ListaDeCartas* listaDestino, i
             RetirarDoTopo(listaOrigem, &cartaTransferida);
             AdicionarNoTopo(listaDestino, cartaTransferida);
         } else {
-            printf("A lista de origem está vazia.\n");
+            printf("A lista de origem esta vazia.\n");
             // Aqui você pode tratar o caso em que a lista de origem está vazia
             // Por exemplo, encerrando o loop ou exibindo uma mensagem de erro
             break;
@@ -145,7 +146,7 @@ void Embaralhar(ListaDeCartas* lista) {
 // Exibir
 void Exibir(ListaDeCartas* lista, bool todasAsCartas) { // o parametro lista é o topo da baralho
     if (EstaVazia(lista)) {
-        printf("A lista de cartas está vazia.\n");
+        printf("A lista de cartas esta vazia.\n");
     } else {
         No* atual = lista->topo; // topo do baralho
         printf("Lista de Cartas:\n");
