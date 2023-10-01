@@ -235,3 +235,85 @@
 	"tad_mesa.h"
 	"ler_arquivo.h"
 
+1696131028 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\interativo.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+	"tad_mesa.h"
+	"ler_arquivo.h"
+
+1696131028 c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\tad_cartas.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1696131028 c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\tad_lista_cartas.h
+	"tad_cartas.h"
+	<stdbool.h>
+
+1696131028 c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\tad_mesa.h
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+
+1696131028 c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\ler_arquivo.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+	"tad_mesa.h"
+
+1696131028 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\ler_arquivo.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<string.h>
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+	"tad_mesa.h"
+	"ler_arquivo.h"
+
+1696131028 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+	"tad_mesa.h"
+	"ler_arquivo.h"
+	"interativo.h"
+
+1696131028 c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\interativo.h
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+	"tad_mesa.h"
+	"ler_arquivo.h"
+
+1696131028 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\tad_cartas.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tad_cartas.h"
+
+1696131028 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\tad_lista_cartas.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	<stdbool.h>
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+
+1696133221 source:c:\users\mathe\onedrive\workspace\solitaire_kondlike_versao_final\solitaire_kondike\tad_mesa.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"tad_cartas.h"
+	"tad_lista_cartas.h"
+	"tad_mesa.h"
+

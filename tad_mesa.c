@@ -190,20 +190,20 @@ int DeterminarBaseCorreta(Mesa* mesa, Carta carta) {
         }
     }
     // nao funciona no for, causa: funcao mover tableau para base
-    No* noAtual = mesa->descarte.topo;
-    if (EstaVazia(&mesa->bases[0]) && carta.valor == 0 && noAtual->carta.naipe == 0) {
+    //No* noAtual = mesa->descarte.topo;
+    if (EstaVazia(&mesa->bases[0]) && carta.valor == 0 && carta.naipe == 0) {
         return 0;
     }
 
-    if (EstaVazia(&mesa->bases[1]) && carta.valor == 0 && noAtual->carta.naipe == 1) {
+    if (EstaVazia(&mesa->bases[1]) && carta.valor == 0 && carta.naipe == 1) {
         return 1;
     }
 
-    if (EstaVazia(&mesa->bases[2]) && carta.valor == 0 && noAtual->carta.naipe == 2) {
+    if (EstaVazia(&mesa->bases[2]) && carta.valor == 0 && carta.naipe == 2) {
         return 2;
     }
 
-    if (EstaVazia(&mesa->bases[3]) && carta.valor == 0 && noAtual->carta.naipe == 3) {
+    if (EstaVazia(&mesa->bases[3]) && carta.valor == 0 && carta.naipe == 3) {
         return 3;
     }
 
@@ -222,7 +222,7 @@ void MoverDescarteParaBases(Mesa* mesa) {
 
         // Determine a base correta para a carta
         int baseCorreta = DeterminarBaseCorreta(mesa, carta);
-
+        printf("%d", baseCorreta);
         // Adicione a carta à base correta
         if (baseCorreta>=0) {
             AdicionarNoTopo(&mesa->bases[baseCorreta], carta);
